@@ -1,5 +1,5 @@
 import Particles from 'react-particles-js';
-import { configTR } from '../particles/particles-config';
+import { configTR } from '../components/ParticleBackground/particles-config';
 
 import Layout from '../components/Layout';
 

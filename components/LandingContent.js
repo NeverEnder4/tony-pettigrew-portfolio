@@ -1,3 +1,5 @@
+import Contact from './Contact/Contact';
+
 const LandingContent = () => (
   <React.Fragment>
     <div className="headline">
@@ -16,9 +18,7 @@ const LandingContent = () => (
         <span className="glow-offset-2">r</span>
       </p>
     </div>
-    <div className="intro">
-      <p>Say Hi</p>
-    </div>
+    <Contact />
     <style jsx>
       {`
         h1 {
@@ -74,12 +74,6 @@ const LandingContent = () => (
           width: 100%;
         }
 
-        .intro {
-          position: absolute;
-          z-index: 10;
-          bottom: 20%;
-          left: 20%;
-        }
         @keyframes glow {
           0% {
             opacity: 0.5;

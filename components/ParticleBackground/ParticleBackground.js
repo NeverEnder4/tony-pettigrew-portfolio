@@ -1,5 +1,5 @@
 import Particles from 'react-particles-js';
-import { configTR } from '../particles/particles-config';
+import { configTR } from './particles-config';
 
 const ParticlesBackground = () => (
   <div>

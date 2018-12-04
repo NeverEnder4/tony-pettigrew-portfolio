@@ -38,7 +38,7 @@ const Layout = ({ children }) => (
       nav {
         display: flex;
         justify-content: space-between;
-        padding: 1em 0;
+        padding: 0.5em 0;
         width: 80vw;
       }
       nav a {

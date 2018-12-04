@@ -1,6 +1,4 @@
-import Particles from 'react-particles-js';
-import config from '../particles/particles-config';
-import ParticlesBackground from '../components/ParticleBackground';
+import ParticlesBackground from '../components/ParticleBackground/ParticleBackground';
 import Layout from '../components/Layout';
 import LandingContent from '../components/LandingContent';
 
