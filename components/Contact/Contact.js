@@ -13,7 +13,7 @@ export default class Contact extends React.Component {
     const contactNodes = this.getContactNodes();
     const { tl } = this;
     const { icons, title, emailLink } = contactNodes;
-    iconScaleIn(icons, tl);
+    iconScaleIn(icons, emailLink, tl);
   }
 
   // Get refs to DOM elements
@@ -38,7 +38,7 @@ export default class Contact extends React.Component {
     return (
       <React.Fragment>
         <div className="contact">
-          <p>Get Social</p>
+          <p />
 
           <a href="#">
             <img
@@ -74,15 +74,18 @@ export default class Contact extends React.Component {
               z-index: 10;
               bottom: 20%;
               left: 20%;
-              width: 60vw;
+              width: 60%;
             }
 
             .email-link {
+              padding: 0.3em 0.7em;
               font-size: 2rem;
               color: #131313;
               font-weight: 800;
               text-decoration: none;
-              opacity: 0.8;
+              opacity: 0;
+              border: 3px dashed rgba(0, 0, 0, 0.8);
+              transform: translateY(-200);
             }
 
             .contact a img {
@@ -91,9 +94,10 @@ export default class Contact extends React.Component {
             }
 
             .contact a {
-              transition: opacity 0.1s ease-out;
+              transition: all 0.1s ease-out;
             }
-            .contact a:hover {
+            .contact a:hover,
+            .contact a:focus {
               opacity: 0.5;
             }
             p {

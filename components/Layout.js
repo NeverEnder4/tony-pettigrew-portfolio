@@ -1,12 +1,18 @@
 import Link from 'next/link';
 
+import SVGLogo from './SVGLogo';
+
 const Layout = ({ children }) => (
   <div>
     <header>
       <nav>
         <Link prefetch href="/">
-          <a className="color-grey"> tonypettigrew.com</a>
+          <a>
+            <SVGLogo />
+            <p className="color-grey"> tonypettigrew.com</p>
+          </a>
         </Link>
+
         <Link prefetch href="/about">
           <a className="color-yellow">
             <img src="/static/about.svg" alt="about me" />
@@ -53,11 +59,13 @@ const Layout = ({ children }) => (
         transition: opacity 0.1s ease-out;
       }
 
-      nav a:hover {
+      nav a:hover,
+      nav a:focus {
         color: #565656;
       }
 
-      nav a:hover img {
+      nav a:hover img,
+      nav a:focus img {
         opacity: 0.3;
       }
 
@@ -87,6 +95,10 @@ const Layout = ({ children }) => (
       }
       .color-grey {
         color: #565656;
+      }
+
+      p.color-grey {
+        margin: 0;
       }
     `}</style>
     <style global jsx>
