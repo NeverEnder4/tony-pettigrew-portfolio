@@ -4,7 +4,7 @@ import { configTR } from '../components/ParticleBackground/particles-config';
 import Layout from '../components/Layout';
 
 const About = () => (
-  <Layout>
+  <Layout title="TonyPettigrew.com | About">
     <Particles
       width="100%"
       height="100vh"

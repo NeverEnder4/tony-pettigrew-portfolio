@@ -9,6 +9,7 @@ export default class Contact extends React.Component {
     this.tl = new TimelineLite();
   }
 
+  // When component mounts, animate in contact
   componentDidMount() {
     const contactNodes = this.getContactNodes();
     const { tl } = this;
@@ -78,7 +79,8 @@ export default class Contact extends React.Component {
               transform: translateY(-200);
             }
 
-            .email-link:hover {
+            .email-link:hover,
+            .email-link:focus {
               background: rgba(0, 0, 0, 0.9);
               color: #aeaeae;
               border: 3px solid rgba(0, 0, 0, 0.8);

@@ -1,14 +1,19 @@
 import Link from 'next/link';
+import Head from 'next/head';
 
-import SVGLogo from './SVGLogo';
+import SVGLogo from './SVGLogo/SVGLogo';
+import { drawSVG } from './SVGLogo/animations';
 
-const Layout = ({ children }) => (
+const Layout = ({ children, title }) => (
   <div>
+    <Head>
+      <title>{title}</title>
+    </Head>
     <header>
       <nav>
         <Link prefetch href="/">
           <a>
-            <SVGLogo />
+            <SVGLogo animation={drawSVG} id={'logo'} />
             <p className="color-grey"> tonypettigrew.com</p>
           </a>
         </Link>

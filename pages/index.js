@@ -3,7 +3,7 @@ import Layout from '../components/Layout';
 import LandingContent from '../components/LandingContent';
 
 const Index = () => (
-  <Layout>
+  <Layout title="TonyPettigrew.com | Home">
     <LandingContent />
     <ParticlesBackground />
     <style global jsx>{`
