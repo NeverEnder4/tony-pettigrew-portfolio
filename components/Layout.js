@@ -45,7 +45,7 @@ const Layout = ({ children }) => (
         display: flex;
         justify-content: space-between;
         padding: 0.5em 0;
-        width: 80vw;
+        width: 86vw;
       }
       nav a {
         text-decoration: none;

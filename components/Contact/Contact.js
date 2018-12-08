@@ -12,7 +12,7 @@ export default class Contact extends React.Component {
   componentDidMount() {
     const contactNodes = this.getContactNodes();
     const { tl } = this;
-    const { icons, title, emailLink } = contactNodes;
+    const { icons, emailLink } = contactNodes;
     iconScaleIn(icons, emailLink, tl);
   }
 
@@ -21,14 +21,13 @@ export default class Contact extends React.Component {
     const contactNodes = ReactDOM.findDOMNode(this).childNodes;
     const iconArr = [];
     contactNodes.forEach((node, index) => {
-      if (index > 0 && index < contactNodes.length - 1) {
+      if (index < contactNodes.length - 1) {
         iconArr.push(node.childNodes);
       }
     });
 
     const orderedNodes = {
       icons: iconArr,
-      title: contactNodes[0],
       emailLink: contactNodes[contactNodes.length - 1],
     };
     return orderedNodes;
@@ -38,14 +37,8 @@ export default class Contact extends React.Component {
     return (
       <React.Fragment>
         <div className="contact">
-          <p />
-
           <a href="#">
-            <img
-              ref={this.element}
-              src="/static/github-icon.svg"
-              alt="github"
-            />
+            <img src="/static/github-icon.svg" alt="github" />
           </a>
           <a href="#">
             <img src="/static/linkedin-icon.svg" alt="linkedin" />
@@ -54,11 +47,7 @@ export default class Contact extends React.Component {
             <img src="/static/twitter-icon.svg" alt="twitter" />
           </a>
           <a href="#">
-            <img
-              ref={this.setIconRef}
-              src="/static/facebook-icon.svg"
-              alt="facebook"
-            />
+            <img src="/static/facebook-icon.svg" alt="facebook" />
           </a>
           <a className="email-link" href="mailto:apettigrew.wsdev@gmail.com">
             apettigrew.wsdev@gmail.com
@@ -73,8 +62,9 @@ export default class Contact extends React.Component {
               position: absolute;
               z-index: 10;
               bottom: 20%;
-              left: 20%;
+              left: 50%;
               width: 60%;
+              transform: translateX(-50%);
             }
 
             .email-link {
@@ -86,6 +76,12 @@ export default class Contact extends React.Component {
               opacity: 0;
               border: 3px dashed rgba(0, 0, 0, 0.8);
               transform: translateY(-200);
+            }
+
+            .email-link:hover {
+              background: rgba(0, 0, 0, 0.9);
+              color: #aeaeae;
+              border: 3px solid rgba(0, 0, 0, 0.8);
             }
 
             .contact a img {
