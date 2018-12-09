@@ -1,5 +1,4 @@
 import { TimelineLite } from 'gsap';
-import ReactDOM from 'react-dom';
 
 import { iconScaleIn } from './animations';
 
@@ -7,31 +6,21 @@ export default class Contact extends React.Component {
   constructor() {
     super();
     this.tl = new TimelineLite();
+    this.iconsRef = [];
+    this.emailLinkRef = null;
+    this.seticonsRef = element => {
+      this.iconsRef.push(element);
+    };
+    this.setEmailLinkRef = element => {
+      this.emailLinkRef = element;
+    };
   }
 
   // When component mounts, animate in contact
   componentDidMount() {
-    const contactNodes = this.getContactNodes();
     const { tl } = this;
-    const { icons, emailLink } = contactNodes;
-    iconScaleIn(icons, emailLink, tl);
-  }
-
-  // Get refs to DOM elements
-  getContactNodes() {
-    const contactNodes = ReactDOM.findDOMNode(this).childNodes;
-    const iconArr = [];
-    contactNodes.forEach((node, index) => {
-      if (index < contactNodes.length - 1) {
-        iconArr.push(node.childNodes);
-      }
-    });
-
-    const orderedNodes = {
-      icons: iconArr,
-      emailLink: contactNodes[contactNodes.length - 1],
-    };
-    return orderedNodes;
+    const { iconsRef, emailLinkRef } = this;
+    iconScaleIn(iconsRef, emailLinkRef, tl);
   }
 
   render() {
@@ -39,18 +28,38 @@ export default class Contact extends React.Component {
       <React.Fragment>
         <div className="contact">
           <a href="#">
-            <img src="/static/github-icon.svg" alt="github" />
+            <img
+              ref={this.seticonsRef}
+              src="/static/github-icon.svg"
+              alt="github"
+            />
           </a>
           <a href="#">
-            <img src="/static/linkedin-icon.svg" alt="linkedin" />
+            <img
+              ref={this.seticonsRef}
+              src="/static/linkedin-icon.svg"
+              alt="linkedin"
+            />
           </a>
           <a href="#">
-            <img src="/static/twitter-icon.svg" alt="twitter" />
+            <img
+              ref={this.seticonsRef}
+              src="/static/twitter-icon.svg"
+              alt="twitter"
+            />
           </a>
           <a href="#">
-            <img src="/static/facebook-icon.svg" alt="facebook" />
+            <img
+              ref={this.seticonsRef}
+              src="/static/facebook-icon.svg"
+              alt="facebook"
+            />
           </a>
-          <a className="email-link" href="mailto:apettigrew.wsdev@gmail.com">
+          <a
+            ref={this.setEmailLinkRef}
+            className="email-link"
+            href="mailto:apettigrew.wsdev@gmail.com"
+          >
             apettigrew.wsdev@gmail.com
           </a>
         </div>

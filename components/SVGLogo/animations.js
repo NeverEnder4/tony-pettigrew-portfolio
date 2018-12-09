@@ -13,7 +13,7 @@ const drawSVG = id => {
       myVivus.destroy();
     },
   );
-  myVivus.play();
+  // myVivus.play();
 };
 
 export { drawSVG };

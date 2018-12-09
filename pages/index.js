@@ -16,7 +16,7 @@ const Index = () => (
 
 export default Index;
 
-//Background Gradient Black
+// Background Gradient Black
 // background-image: radial-gradient(
 //   circle farthest-corner at 10% 20%,
 //   rgba(0, 0, 0, 1) 0%,

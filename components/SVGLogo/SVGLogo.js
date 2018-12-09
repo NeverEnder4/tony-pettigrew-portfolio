@@ -1,12 +1,30 @@
+import css from 'styled-jsx/css';
+
+const loadingIconStyle = css`
+  svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(2);
+  }
+`;
+
+const menuIconStyle = css`
+  svg {
+    height: 40px;
+  }
+`;
+
 export default class SVGLogo extends React.Component {
   componentDidMount() {
-    if (this.props.animation && this.props.id) {
-      const { animation, id } = this.props;
-      animation(id);
+    if (this.props.vivusAnimation && this.props.id) {
+      const { vivusAnimation, id } = this.props;
+      vivusAnimation(id);
     }
   }
   render() {
-    const { id } = this.props;
+    const { id, loadingIcon } = this.props;
+    const iconStyle = loadingIcon ? loadingIconStyle : menuIconStyle;
     return (
       <React.Fragment>
         <svg
@@ -77,11 +95,7 @@ export default class SVGLogo extends React.Component {
           />
         </svg>
 
-        <style jsx>{`
-          svg {
-            height: 40px;
-          }
-        `}</style>
+        <style jsx>{iconStyle}</style>
       </React.Fragment>
     );
   }

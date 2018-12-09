@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "@emotion/core": "^10.0.4",
+    "@zeit/next-css": "^1.0.1",
     "apollo-fetch": "^0.7.0",
     "cosmicjs": "^3.2.14",
     "emotion": "^10.0.4",
@@ -22,7 +23,7 @@
     "react-dom": "^16.6.3",
     "react-emotion": "^10.0.0",
     "react-particles-js": "^2.4.2",
-    "uninstall": "0.0.0",
+    "react-transition-group": "^2.5.0",
     "vivus": "^0.4.4"
   }
 }
