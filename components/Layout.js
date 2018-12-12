@@ -111,6 +111,7 @@ class Layout extends React.Component {
               transition: color 0.15s ease-out;
               display: flex;
               align-items: center;
+              font-weight: 900;
             }
 
             nav a img {
@@ -166,6 +167,7 @@ class Layout extends React.Component {
               margin: 0;
               padding: 0;
               background: #131313;
+              font-family: 'Noto Sans KR';
             }
           `}
         </style>

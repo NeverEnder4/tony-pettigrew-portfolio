@@ -5,7 +5,7 @@ const drawSVG = id => {
     id,
     {
       type: 'delayed',
-      duration: 100,
+      duration: 80,
       pathTimingFunction: Vivus.EASE_OUT,
       selfDestroy: false,
     },

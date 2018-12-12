@@ -28,6 +28,7 @@ const LandingContent = () => (
           text-shadow: 0.5px 1px rgba(0, 0, 0, 0.5);
         }
         h1.title {
+          font-family: 'Righteous';
           margin-left: 0.5em;
         }
         h1.separator {

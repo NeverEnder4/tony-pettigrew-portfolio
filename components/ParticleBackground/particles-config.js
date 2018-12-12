@@ -1,3 +1,5 @@
+import path from 'path';
+
 const configTR = {
   particles: {
     number: {
@@ -112,14 +114,14 @@ const configTR = {
 const configBL = {
   particles: {
     number: {
-      value: 80,
+      value: 25,
       density: {
         enable: true,
         value_area: 800,
       },
     },
     color: {
-      value: '#131313',
+      value: '#dedede',
     },
     shape: {
       type: 'circle',
@@ -157,16 +159,16 @@ const configBL = {
       },
     },
     line_linked: {
-      enable: false,
-      distance: 300,
-      color: '#000000',
+      enable: true,
+      distance: 100,
+      color: '#eee',
       opacity: 0.4,
-      width: 2,
+      width: 0.5,
     },
     move: {
       enable: true,
-      speed: 2,
-      direction: 'top-left',
+      speed: 0.1,
+      direction: 'random',
       random: false,
       straight: false,
       out_mode: 'out',
@@ -182,12 +184,12 @@ const configBL = {
     detect_on: 'canvas',
     events: {
       onhover: {
-        enable: false,
-        mode: 'grab',
+        enable: true,
+        mode: 'repulse',
       },
       onclick: {
         enable: false,
-        mode: 'push',
+        mode: 'repulse',
       },
       resize: true,
     },
@@ -206,8 +208,8 @@ const configBL = {
         speed: 3,
       },
       repulse: {
-        distance: 400,
-        duration: 0.4,
+        distance: 100,
+        duration: 0.2,
       },
       push: {
         particles_nb: 4,
