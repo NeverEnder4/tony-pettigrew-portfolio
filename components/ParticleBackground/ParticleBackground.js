@@ -7,12 +7,12 @@ const ParticlesBackground = () => (
       width="100%"
       height="100vh"
       params={configTR}
-      className="wrapper"
+      className="particles"
     />
 
     <style global jsx>
       {`
-        .wrapper {
+        .particles {
           background-image: radial-gradient(
             circle farthest-corner at 10% 20%,
             rgba(253, 239, 132, 1) 0%,
@@ -22,7 +22,7 @@ const ParticlesBackground = () => (
           background-attachment: fixed;
           height: 100vh;
           position: relative;
-          z-index: 1;
+          z-index: -10;
         }
       `}
     </style>

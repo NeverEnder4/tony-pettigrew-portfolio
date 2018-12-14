@@ -75,7 +75,7 @@ class Layout extends React.Component {
             <Link prefetch href="/demonstrations">
               <a className="color-red">
                 {' '}
-                <img src="/static/demo.svg" alt="about me" /> demonstrations
+                <img src="/static/demo.svg" alt="portfolio" /> demonstrations
               </a>
             </Link>
             <Link prefetch href="/blog">
@@ -132,28 +132,13 @@ class Layout extends React.Component {
               height: 1em;
             }
 
-            .color-yellow {
-              color: rgba(253, 239, 132, 1);
-            }
-
             .color-red img {
               height: 2em;
-            }
-
-            .color-red {
-              color: rgba(247, 198, 169, 1);
             }
 
             .color-blue img {
               height: 1.2em;
               margin-right: 0.2em;
-            }
-
-            .color-blue {
-              color: rgba(21, 186, 196, 1);
-            }
-            .color-grey {
-              color: #565656;
             }
 
             p.color-grey {
@@ -168,6 +153,18 @@ class Layout extends React.Component {
               padding: 0;
               background: #131313;
               font-family: 'Noto Sans KR';
+            }
+            .color-red {
+              color: rgba(247, 198, 169, 1);
+            }
+            .color-yellow {
+              color: rgba(253, 239, 132, 1);
+            }
+            .color-blue {
+              color: rgba(21, 186, 196, 1);
+            }
+            .color-grey {
+              color: #565656;
             }
           `}
         </style>
