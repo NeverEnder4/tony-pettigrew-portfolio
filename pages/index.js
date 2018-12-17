@@ -1,6 +1,6 @@
 import ParticlesBackground from '../components/ParticleBackground/ParticleBackground';
 import Layout from '../components/Layout';
-import LandingContent from '../components/LandingContent';
+import LandingContent from '../components/LandingContent/LandingContent';
 
 const Index = () => (
   <Layout title="TonyPettigrew.com | Home">

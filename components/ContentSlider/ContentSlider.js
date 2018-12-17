@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import SVGDownArrow from '../SVGDownArrow/SVGDownArrow';
+import SVGDownArrow from './SVGDownArrow/SVGDownArrow';
 import { contentEnter, contentSlideOut, contentSlideIn } from './animations';
 
 export default class ContentSlider extends React.Component {
@@ -10,12 +10,14 @@ export default class ContentSlider extends React.Component {
       clickCount: 0,
       disabled: false,
     };
+    //reference array that holds the three blocks of content to be displayed in the slider
     this.contentRefArr = [];
     this.setContentRef = element => {
       if (this.contentRefArr.length < 3) this.contentRefArr.push(element);
     };
     this.onClickHandler = this.onClickHandler.bind(this);
   }
+  // when component mounts, slide in content
   componentDidMount() {
     const { contentRefArr } = this;
     const { clickCount } = this.state;
@@ -24,26 +26,25 @@ export default class ContentSlider extends React.Component {
 
   onClickHandler() {
     const { contentRefArr } = this;
-    console.log(contentRefArr);
     const refArrLength = contentRefArr.length;
     const currIndex = this.state.clickCount;
     let nextIndex;
-    // Fade out and push up current content
+    // fade out and push up current content
     contentSlideOut(contentRefArr, currIndex);
-    // Disable down arrow button
+    // disable down arrow button
     this.setState({ disabled: true });
-    // If count is 2 change count to 0
+    // if count is 2 change count to 0
     if (this.state.clickCount === refArrLength - 1)
       this.setState({ clickCount: 0 });
-    // Else, increment count by 1
+    // else, increment count by 1
     else {
       this.setState({ clickCount: currIndex + 1 });
     }
     // nextIndex is equal to currentIndex + 1
     nextIndex = currIndex + 1;
-    // If nextIndex is equal to ref array length then set nextIndex to 0
+    // if nextIndex is equal to ref array length then set nextIndex to 0
     if (nextIndex === refArrLength) nextIndex = 0;
-    // Fade in and push up next content
+    // fade in and push up next content, then disable the button until animation ends
     contentSlideIn(contentRefArr, nextIndex, this);
   }
   render() {
@@ -53,13 +54,10 @@ export default class ContentSlider extends React.Component {
           ref={element => this.setContentRef(element)}
           className="content-block intro"
         >
-          <div>
-            <p>
-              Hi, my name is <span className="color-blue">Tony Pettigrew</span>.
-              I'm a developer based in Seattle.
-            </p>
-            <p>At the moment, I'm looking for my first job.</p>
-          </div>
+          <p>
+            Hi, my name is <span className="color-blue">Tony Pettigrew</span>.
+            I'm a developer based in Seattle.
+          </p>
         </div>
         <div
           ref={element => this.setContentRef(element)}

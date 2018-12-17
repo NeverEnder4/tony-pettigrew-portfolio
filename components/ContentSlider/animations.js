@@ -1,5 +1,6 @@
 import { TweenLite } from 'gsap';
 
+// animate in about section content initially
 export const contentEnter = (contentArr, index) => {
   TweenLite.fromTo(
     contentArr[index],
@@ -16,6 +17,7 @@ export const contentEnter = (contentArr, index) => {
   );
 };
 
+// upon click of down arrow button in content slider the content currently shown will slide up
 export const contentSlideOut = (contentArr, index) => {
   return TweenLite.to(contentArr[index], 0.4, {
     y: '-100%',
@@ -24,6 +26,7 @@ export const contentSlideOut = (contentArr, index) => {
   });
 };
 
+// upon click of down arrow button in the content slider the next content will slide in from the bottom
 export const contentSlideIn = (contentArr, index, object) => {
   return TweenLite.fromTo(
     contentArr[index],

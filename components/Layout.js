@@ -153,6 +153,10 @@ class Layout extends React.Component {
               padding: 0;
               background: #131313;
               font-family: 'Noto Sans KR';
+              overflow: hidden;
+            }
+            a {
+              text-decoration: none;
             }
             .color-red {
               color: rgba(247, 198, 169, 1);
@@ -165,6 +169,9 @@ class Layout extends React.Component {
             }
             .color-grey {
               color: #565656;
+            }
+            .color-white {
+              color: #efefef;
             }
           `}
         </style>
