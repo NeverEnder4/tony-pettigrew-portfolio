@@ -173,6 +173,10 @@ class Layout extends React.Component {
             .color-white {
               color: #efefef;
             }
+
+            .color-black {
+              color: #131313;
+            }
           `}
         </style>
       </div>

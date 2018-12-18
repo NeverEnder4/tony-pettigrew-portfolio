@@ -11,14 +11,15 @@ const PostItem = ({ post }) => {
   };
   return (
     <div className="post">
-      <img className="image" src={post.metadata.img.imgix_url + imgixConfig} />
+      {/* <img className="image" src={post.metadata.img.imgix_url + imgixConfig} /> */}
+
       <div className="info-section">
         <h1 className="title color-red">{post.title}</h1>
-        <pre className="created-at color-grey">
+        <pre className="created-at color-black">
           {formatDate(post.created_at)}
         </pre>
-        <p className="author color-blue">{post.metadata.author}</p>
-        <p className="description">{post.metadata.description}</p>
+        {/* <p className="author color-blue">{post.metadata.author}</p> */}
+        <p className="description color-black">{post.metadata.description}</p>
       </div>
       {/* <div className="tags-section">
         <div className="tags color-yellow">{formatTag(post.metadata.tag)}</div>
@@ -26,13 +27,12 @@ const PostItem = ({ post }) => {
 
       <style jsx>{`
         .post {
-          background: rgba(0, 0, 0, 0.7);
-          border: 1px solid #131313;
           height: 100%;
           margin: 1em 0;
-          padding: 1em 15em;
+          padding: 1em 0;
           display: flex;
           align-items: center;
+          justify-content: center;
           transition: all 0.15s ease-out;
         }
 
@@ -40,12 +40,12 @@ const PostItem = ({ post }) => {
           background: rgba(0, 0, 0, 0.5);
         }
 
-        .post:hover .description {
+        .post:hover .description,
+        .post:hover .created-at {
           color: #efefef;
         }
 
         .info-section {
-          margin-left: 10em;
           width: 800px;
         }
         .tags-section {
@@ -59,10 +59,13 @@ const PostItem = ({ post }) => {
           margin-top: 5px;
         }
 
+        .created-at {
+          transition: all 0.1s ease-out;
+        }
+
         .description {
           font-size: 1.2rem;
           margin-top: 1em;
-          color: #565656;
           transition: all 0.1s ease-out;
         }
 
