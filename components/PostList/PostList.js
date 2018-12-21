@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import PropTypes from 'prop-types';
 
 import PostItem from './PostItem/PostItem';
 
@@ -59,6 +60,10 @@ const PostList = ({ posts }) => {
       `}</style>
     </div>
   );
+};
+
+PostList.propTypes = {
+  posts: PropTypes.array,
 };
 
 export default PostList;
