@@ -3,14 +3,6 @@ import PropTypes from 'prop-types';
 import { formatDate } from '../../../utils/utils';
 
 const PostItem = ({ post }) => {
-  const imgixConfig = '?w=400&auto=compress&q=50&fit=clip';
-  const formatTag = tagString => {
-    return tagString.split(',').map(tag => (
-      <a key={tag} className="tag color-yellow" href="#">
-        {tag}
-      </a>
-    ));
-  };
   return (
     <div className="post">
       <div className="content">
