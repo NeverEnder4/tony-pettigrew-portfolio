@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import Link from 'next/link';
 
 import { formatDate } from '../../../utils/utils';
 
@@ -6,7 +7,9 @@ const PostItem = ({ post }) => {
   return (
     <div className="post">
       <div className="content">
-        <h1 className="title color-red">{post.title}</h1>
+        <Link href={`/post?slug=${post.slug}`}>
+          <a className="title color-red">{post.title}</a>
+        </Link>
         <pre className="created-at color-black">
           {formatDate(post.created_at)}
         </pre>
@@ -23,6 +26,9 @@ const PostItem = ({ post }) => {
           justify-content: center;
         }
 
+        .title {
+          font-size: 2rem;
+        }
         .content {
           width: 800px;
         }

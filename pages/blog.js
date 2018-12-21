@@ -1,15 +1,14 @@
-// import ReactDOM from 'react-dom';
 import fetch from 'isomorphic-unfetch';
 import Error from 'next/error';
 
 import Layout from '../components/Layout';
 import PostList from '../components/PostList/PostList';
 
-export default class blog extends React.Component {
+export default class Blog extends React.Component {
   static async getInitialProps() {
     let posts;
     try {
-      const res = await fetch('http://localhost:3000/graphql/posts');
+      const res = await fetch('http://localhost:3000/blog/posts');
       const { data } = await res.json();
 
       posts = data.objectsByType;
