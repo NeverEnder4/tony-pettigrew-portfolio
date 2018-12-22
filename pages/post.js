@@ -25,7 +25,12 @@ export default class Post extends React.Component {
     return (
       <Layout title={`TonyPettigrew.com | ${post.title}`}>
         <div className="container">
-          <img src={post.metadata.img.imgix_url + '?auto=format&w=1200'} />
+          <img
+            src={
+              post.metadata.img.imgix_url +
+              '?fit=crop&h=300&w=2000&txt=NextJS:%20Getting%20Started!&txtsize=90&txtclr=fefefe&txtalign=middle,center&txtfont=Futura%20Condensed%20Medium'
+            }
+          />
           <div className="post">
             <h1>{post.title}</h1>
             <pre>{formatDate(post.created_at)}</pre>
@@ -39,9 +44,15 @@ export default class Post extends React.Component {
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            background: #565656;
           }
           .post {
             width: 800px;
+          }
+
+          img {
+            width: 100%;
+            height: 300px;
           }
         `}</style>
         <style global jsx>{`
