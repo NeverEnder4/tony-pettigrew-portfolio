@@ -3,7 +3,7 @@ import Error from 'next/error';
 import PropTypes from 'prop-types';
 
 import Layout from '../components/Layout';
-import { formatDate } from '../utils/utils';
+import { formatDate, urlify } from '../utils/utils';
 
 export default class Post extends React.Component {
   static async getInitialProps({ query }) {
@@ -21,6 +21,7 @@ export default class Post extends React.Component {
   }
   render() {
     const post = this.props.post.object;
+    const urlFormattedTitle = urlify(post.title);
     if (!post) return <Error statusCode={503} />;
     return (
       <Layout title={`TonyPettigrew.com | ${post.title}`}>
@@ -28,11 +29,11 @@ export default class Post extends React.Component {
           <img
             src={
               post.metadata.img.imgix_url +
-              '?fit=crop&h=300&w=2000&txt=NextJS:%20Getting%20Started!&txtsize=90&txtclr=fefefe&txtalign=middle,center&txtfont=Futura%20Condensed%20Medium'
+              `?fit=crop&h=300&w=2000&txt=${urlFormattedTitle}&txtsize=90&txtclr=fefefe&txtalign=middle,center&txtfont=Futura%20Condensed%20Medium`
             }
           />
           <div className="post">
-            <h1>{post.title}</h1>
+            {/* <h1>{post.title}</h1> */}
             <pre>{formatDate(post.created_at)}</pre>
             <p dangerouslySetInnerHTML={{ __html: post.content }} />
           </div>
@@ -44,7 +45,11 @@ export default class Post extends React.Component {
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background: #565656;
+            background-image: linear-gradient(
+              109.6deg,
+              rgba(185, 212, 242, 1) 11.2%,
+              rgba(244, 210, 226, 1) 100.3%
+            );
           }
           .post {
             width: 800px;

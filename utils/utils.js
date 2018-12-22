@@ -6,3 +6,7 @@ export const formatDate = dateString => {
     })
     .join(' ');
 };
+
+export const urlify = str => {
+  return str.replace(/\s/g, '%20');
+};

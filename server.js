@@ -20,7 +20,7 @@ nextApp.prepare().then(() => {
   app.get('/blog/posts', (req, res, next) => {
     fetch({
       query: `{
-        objectsByType(bucket_slug: "tony-pettigrew-portfolio", type_slug: "posts",) {
+        objectsByType(bucket_slug: "tony-pettigrew-portfolio", type_slug: "posts", limit: 3) {
              _id
              title
              slug
