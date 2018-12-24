@@ -17,10 +17,12 @@ nextApp.prepare().then(() => {
   app.use(express.urlencoded({ extended: true }));
   app.use(express.json());
 
-  app.get('/blog/posts', (req, res, next) => {
+  app.get('/blog/posts/:skip', (req, res, next) => {
     fetch({
       query: `{
-        objectsByType(bucket_slug: "tony-pettigrew-portfolio", type_slug: "posts", limit: 3) {
+        objectsByType(bucket_slug: "tony-pettigrew-portfolio", type_slug: "posts", limit: 4, skip: ${
+          req.params.skip
+        }) {
              _id
              title
              slug
