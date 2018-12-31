@@ -31,6 +31,9 @@ export default class PostItem extends React.Component {
           .title {
             font-size: 2rem;
           }
+          .created-at {
+            margin-top: 1em;
+          }
           .content {
             width: 800px;
           }

@@ -17,12 +17,10 @@ nextApp.prepare().then(() => {
   app.use(express.urlencoded({ extended: true }));
   app.use(express.json());
 
-  app.get('/blog/posts/:skip', (req, res, next) => {
+  app.get('/blog/posts', (req, res) => {
     fetch({
       query: `{
-        objectsByType(bucket_slug: "tony-pettigrew-portfolio", type_slug: "posts", limit: 4, skip: ${
-          req.params.skip
-        }) {
+        objectsByType(bucket_slug: "tony-pettigrew-portfolio", type_slug: "posts") {
              _id
              title
              slug
@@ -39,7 +37,7 @@ nextApp.prepare().then(() => {
       });
   });
 
-  app.get('/blog/:slug', (req, res, next) => {
+  app.get('/blog/:slug', (req, res) => {
     fetch({
       query: `{
         object(bucket_slug: "tony-pettigrew-portfolio", slug:"${
@@ -56,6 +54,39 @@ nextApp.prepare().then(() => {
     })
       .then(post => {
         res.json(post);
+      })
+      .catch(err => {
+        console.warn(err);
+      });
+  });
+
+  app.get('/blog/next/:slug', (req, res) => {
+    fetch({
+      query: `{
+        objectsByType(bucket_slug: "tony-pettigrew-portfolio", type_slug: "posts") {
+             _id
+             title
+             slug
+             created_at
+             metadata
+           }
+     }`,
+    })
+      .then(posts => {
+        let nextPost, currentIndex;
+        const postsArr = posts.data.objectsByType;
+        postsArr.forEach((post, index) => {
+          if (req.params.slug === post.slug) {
+            currentIndex = index;
+          }
+        });
+
+        if (currentIndex > 0) {
+          nextPost = postsArr[currentIndex - 1];
+        } else {
+          nextPost = null;
+        }
+        res.json(nextPost);
       })
       .catch(err => {
         console.warn(err);

@@ -13,7 +13,7 @@ export default class Post extends React.Component {
     const page = query.p;
     try {
       const res = await fetch(`http://localhost:3000/blog/${slug}`);
-      const { data } = await res.json();
+      const { data } = await res.json(`http://localhost:3000/blog/${slug}`);
       post = data;
     } catch (err) {
       console.warn(err);

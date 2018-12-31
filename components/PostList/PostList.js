@@ -5,7 +5,9 @@ import PostItem from './PostItem/PostItem';
 
 export default class PostList extends React.Component {
   render() {
-    const { posts, page } = this.props;
+    const { posts, page, skip } = this.props;
+    const maxIndex = page * skip ? page * skip : 3;
+    console.log(posts.length, page, skip, maxIndex);
     return (
       <div className="post-list">
         <div className="title-position">
@@ -20,9 +22,10 @@ export default class PostList extends React.Component {
           </div>
         </div>
 
-        {posts.map(post => (
-          <PostItem key={post._id} page={page} post={post} />
-        ))}
+        {posts.map((post, i) => {
+          if (i >= skip && i < maxIndex)
+            return <PostItem key={post._id} page={page} post={post} />;
+        })}
         <style jsx>{`
           .post-list {
             padding-top: 3em;
