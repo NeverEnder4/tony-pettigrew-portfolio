@@ -6,8 +6,8 @@ import PostItem from './PostItem/PostItem';
 export default class PostList extends React.Component {
   render() {
     const { posts, page, skip } = this.props;
+    // the maxIndex of the last post to display in the PostList is either page * skip or 3
     const maxIndex = page * skip ? page * skip : 3;
-    console.log(posts.length, page, skip, maxIndex);
     return (
       <div className="post-list">
         <div className="title-position">
@@ -21,8 +21,9 @@ export default class PostList extends React.Component {
             </h1>
           </div>
         </div>
-
         {posts.map((post, i) => {
+          // map through all posts
+          // if i is between the amount we want to skip and the maxIndex, render a PostItem component for it
           if (i >= skip && i < maxIndex)
             return <PostItem key={post._id} page={page} post={post} />;
         })}

@@ -8,42 +8,46 @@ import { formatDate, urlify } from '../utils/utils';
 
 export default class Post extends React.Component {
   static async getInitialProps({ query }) {
-    let post;
+    let currentPost, nextPost;
     const { slug } = query;
     const page = query.p;
     try {
       const res = await fetch(`http://localhost:3000/blog/${slug}`);
-      const { data } = await res.json(`http://localhost:3000/blog/${slug}`);
-      post = data;
+      const data = await res.json();
+      currentPost = data.currentPost;
+      nextPost = data.nextPost;
     } catch (err) {
       console.warn(err);
-      post = null;
+      currentPost = null;
     }
-    return { post, page };
+    return { page, currentPost, nextPost };
   }
   render() {
-    const post = this.props.post.object;
-    const { page } = this.props;
-    const urlFormattedTitle = urlify(post.title);
-    if (!post) return <Error statusCode={503} />;
+    const { currentPost, nextPost, page } = this.props;
+    const urlFormattedTitle = urlify(currentPost.title);
+    if (!currentPost) return <Error statusCode={503} />;
     return (
-      <Layout title={`TonyPettigrew.com | ${post.title}`}>
+      <Layout title={`TonyPettigrew.com | ${currentPost.title}`}>
         <div className="container">
           <img
             src={
-              post.metadata.img.imgix_url +
+              currentPost.metadata.img.imgix_url +
               `?fit=crop&h=300&w=2000&txt=${urlFormattedTitle}&txtsize=90&txtclr=fefefe&txtalign=middle,center&txtfont=Futura%20Condensed%20Medium`
             }
           />
           <div className="post">
-            <Link href={`/blog?page=${page}`}>
-              <a className="color-blue post-nav">Back To Blog</a>
-            </Link>
-            <pre>{formatDate(post.created_at)}</pre>
-            <p dangerouslySetInnerHTML={{ __html: post.content }} />
+            <div className="post-nav-container">
+              <Link href={`/blog?page=${page}`}>
+                <a className="color-blue post-nav">Back To Blog</a>
+              </Link>
+              <Link href={`/post?p=1&slug=${nextPost.slug}`}>
+                <a className="color-blue post-nav">{nextPost.title} >></a>
+              </Link>
+            </div>
+            <pre>{formatDate(currentPost.created_at)}</pre>
+            <p dangerouslySetInnerHTML={{ __html: currentPost.content }} />
           </div>
         </div>
-
         <style jsx>{`
           .container {
             display: flex;
@@ -60,11 +64,20 @@ export default class Post extends React.Component {
             margin-top: 2em;
             width: 800px;
           }
-
           .post-nav {
             font-size: 1.2rem;
+            transition: color 0.15s ease-in-out;
           }
 
+          .post-nav:hover,
+          .post-nav:focus {
+            color: #565656;
+          }
+
+          .post-nav-container {
+            display: flex;
+            justify-content: space-between;
+          }
           img {
             width: 100%;
             height: 300px;
@@ -80,6 +93,4 @@ export default class Post extends React.Component {
   }
 }
 
-Post.propTypes = {
-  post: PropTypes.object,
-};
+Post.propTypes = {};

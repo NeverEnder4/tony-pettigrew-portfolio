@@ -26,6 +26,7 @@ nextApp.prepare().then(() => {
              slug
              created_at
              metadata
+             
            }
      }`,
     })
@@ -40,53 +41,32 @@ nextApp.prepare().then(() => {
   app.get('/blog/:slug', (req, res) => {
     fetch({
       query: `{
-        object(bucket_slug: "tony-pettigrew-portfolio", slug:"${
-          req.params.slug
-        }" ) {
-             _id
-             title
-             slug
-             content
-             created_at
-             metadata
-           }
-     }`,
-    })
-      .then(post => {
-        res.json(post);
-      })
-      .catch(err => {
-        console.warn(err);
-      });
-  });
-
-  app.get('/blog/next/:slug', (req, res) => {
-    fetch({
-      query: `{
         objectsByType(bucket_slug: "tony-pettigrew-portfolio", type_slug: "posts") {
              _id
              title
              slug
              created_at
+             content
              metadata
            }
      }`,
     })
       .then(posts => {
-        let nextPost, currentIndex;
+        let nextPost, currentIndex, currentPost;
         const postsArr = posts.data.objectsByType;
         postsArr.forEach((post, index) => {
           if (req.params.slug === post.slug) {
             currentIndex = index;
+            currentPost = post;
           }
         });
 
         if (currentIndex > 0) {
           nextPost = postsArr[currentIndex - 1];
         } else {
-          nextPost = null;
+          nextPost = postsArr[postsArr.length - 1];
         }
-        res.json(nextPost);
+        res.json({ currentPost, nextPost });
       })
       .catch(err => {
         console.warn(err);
