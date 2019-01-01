@@ -9,22 +9,28 @@ import { formatDate, urlify } from '../utils/utils';
 export default class Post extends React.Component {
   static async getInitialProps({ query }) {
     let currentPost, nextPost;
+    // grab the slug and page number of original PostItem clicked on from the blog page
     const { slug } = query;
     const page = query.p;
     try {
+      // fetch currentPost and nextPost from api endpoint
       const res = await fetch(`http://localhost:3000/blog/${slug}`);
       const data = await res.json();
       currentPost = data.currentPost;
       nextPost = data.nextPost;
+      // if there's an error, set currentPost to equal null
     } catch (err) {
       console.warn(err);
       currentPost = null;
     }
+    // return page, currentPost and nextPost on the props object
     return { page, currentPost, nextPost };
   }
   render() {
     const { currentPost, nextPost, page } = this.props;
+    // format title to replace spaces with '%20'
     const urlFormattedTitle = urlify(currentPost.title);
+    // if currentPost is falsey, return error page
     if (!currentPost) return <Error statusCode={503} />;
     return (
       <Layout title={`TonyPettigrew.com | ${currentPost.title}`}>
@@ -93,4 +99,8 @@ export default class Post extends React.Component {
   }
 }
 
-Post.propTypes = {};
+Post.propTypes = {
+  currentPost: PropTypes.object,
+  nextPost: PropTypes.object,
+  page: PropTypes.number,
+};

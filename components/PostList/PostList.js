@@ -4,6 +4,28 @@ import PropTypes from 'prop-types';
 import PostItem from './PostItem/PostItem';
 
 export default class PostList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.postItemRefs = [];
+    this.setPostRefs = element => {
+      if (element !== null) this.postItemRefs.push(element);
+    };
+  }
+
+  componentDidMount() {
+    console.log(this.postItemRefs);
+  }
+
+  shouldComponentUpdate(nextProps) {
+    if (nextProps.page !== this.props.page) {
+      this.postItemRefs = [];
+      return true;
+    }
+  }
+
+  componentDidUpdate() {
+    console.log(this.postItemRefs);
+  }
   render() {
     const { posts, page, skip } = this.props;
     // the maxIndex of the last post to display in the PostList is either page * skip or 3
@@ -25,7 +47,14 @@ export default class PostList extends React.Component {
           // map through all posts
           // if i is between the amount we want to skip and the maxIndex, render a PostItem component for it
           if (i >= skip && i < maxIndex)
-            return <PostItem key={post._id} page={page} post={post} />;
+            return (
+              <PostItem
+                ref={element => this.setPostRefs(element)}
+                key={post._id}
+                page={page}
+                post={post}
+              />
+            );
         })}
         <style jsx>{`
           .post-list {
