@@ -107,7 +107,7 @@ class Layout extends React.Component {
             }
             nav a {
               text-decoration: none;
-              font-size: 1.5rem;
+              font-size: 1.2rem;
               transition: color 0.15s ease-out;
               display: flex;
               align-items: center;

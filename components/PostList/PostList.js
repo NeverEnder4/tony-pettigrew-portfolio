@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import PropTypes from 'prop-types';
+import { TimelineLite, TweenLite } from 'gsap';
 
 import PostItem from './PostItem/PostItem';
 
@@ -8,11 +9,34 @@ export default class PostList extends React.Component {
     super(props);
     this.postItemRefs = [];
     this.setPostRefs = element => {
-      if (element !== null) this.postItemRefs.push(element);
+      if (element !== null) this.postItemRefs.push(element.children[0]);
     };
+    this.introTLL = new TimelineLite({});
   }
 
   componentDidMount() {
+    const { postItemRefs } = this;
+    this.introTLL.fromTo(
+      postItemRefs[0],
+      0.4,
+      { opacity: 0, ease: Power2.easeIn },
+      { opacity: 1, ease: Power2.easeIn },
+    );
+    this.introTLL.fromTo(
+      postItemRefs[1],
+      0.4,
+      { opacity: 0, ease: Power2.easeIn },
+      { opacity: 1, ease: Power2.easeIn },
+      '-=0.2',
+    );
+    this.introTLL.fromTo(
+      postItemRefs[2],
+      0.4,
+      { opacity: 0, ease: Power2.easeIn },
+      { opacity: 1, ease: Power2.easeIn },
+      '-=0.2',
+    );
+
     console.log(this.postItemRefs);
   }
 
@@ -20,7 +44,7 @@ export default class PostList extends React.Component {
     if (nextProps.page !== this.props.page) {
       this.postItemRefs = [];
       return true;
-    }
+    } else false;
   }
 
   componentDidUpdate() {
@@ -48,12 +72,9 @@ export default class PostList extends React.Component {
           // if i is between the amount we want to skip and the maxIndex, render a PostItem component for it
           if (i >= skip && i < maxIndex)
             return (
-              <PostItem
-                ref={element => this.setPostRefs(element)}
-                key={post._id}
-                page={page}
-                post={post}
-              />
+              <div key={post._id} ref={element => this.setPostRefs(element)}>
+                <PostItem page={page} post={post} />
+              </div>
             );
         })}
         <style jsx>{`
@@ -71,7 +92,6 @@ export default class PostList extends React.Component {
             display: flex;
             align-items: center;
             width: 800px;
-            margin-bottom: 1em;
           }
 
           .blog-title img {

@@ -21,7 +21,7 @@ export default class PostItem extends React.Component {
         <style jsx>{`
           .post {
             height: 100%;
-            margin: 1em 0;
+            margin: 2.5em 0;
             padding: 1em 0;
             display: flex;
             align-items: center;
@@ -29,10 +29,10 @@ export default class PostItem extends React.Component {
           }
 
           .title {
-            font-size: 2rem;
+            font-size: 1.8rem;
           }
           .created-at {
-            margin-top: 1em;
+            margin-top: 0.2em;
           }
           .content {
             width: 800px;

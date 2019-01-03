@@ -102,5 +102,5 @@ export default class Post extends React.Component {
 Post.propTypes = {
   currentPost: PropTypes.object,
   nextPost: PropTypes.object,
-  page: PropTypes.number,
+  page: PropTypes.string,
 };
