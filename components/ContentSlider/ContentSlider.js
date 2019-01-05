@@ -111,9 +111,9 @@ export default class ContentSlider extends React.Component {
           }
           p {
             color: #eee;
-            font-size: 5rem;
+            font-size: 4rem;
             font-weight: 900;
-            line-height: 8rem;
+            line-height: 6rem;
             letter-spacing: 0.35rem;
             transform: translateY(-60px);
           }

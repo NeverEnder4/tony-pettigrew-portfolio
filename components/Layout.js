@@ -26,7 +26,9 @@ class Layout extends React.Component {
     };
   }
   componentDidMount() {
-    this.handlePageLoad();
+    const { loadIn } = this.props;
+    if (loadIn) this.handlePageLoad();
+    else this.setState({ loading: false });
   }
 
   handlePageLoad() {
@@ -69,20 +71,20 @@ class Layout extends React.Component {
             <Link prefetch href="/about">
               <a className="color-yellow">
                 <img src="/static/about.svg" alt="about me" />
-                about me
+                About Me
               </a>
             </Link>
             <Link prefetch href="/demonstrations">
               <a className="color-red">
                 {' '}
-                <img src="/static/demo.svg" alt="portfolio" /> demonstrations
+                <img src="/static/demo.svg" alt="portfolio" /> Demonstrations
               </a>
             </Link>
             <Link prefetch href="/blog">
               <a className="color-blue">
                 {' '}
                 <img src="/static/blog.svg" alt="blog" />
-                opinions
+                Opinions
               </a>
             </Link>
           </nav>

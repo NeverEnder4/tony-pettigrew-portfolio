@@ -3,7 +3,7 @@ import Layout from '../components/Layout';
 import LandingContent from '../components/LandingContent/LandingContent';
 
 const Index = () => (
-  <Layout title="TonyPettigrew.com | Home">
+  <Layout loadIn={true} title="TonyPettigrew.com | Home">
     <LandingContent />
     <ParticlesBackground />
     <style global jsx>{`

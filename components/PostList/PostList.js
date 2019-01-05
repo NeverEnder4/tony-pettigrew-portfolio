@@ -36,8 +36,6 @@ export default class PostList extends React.Component {
       { opacity: 1, ease: Power2.easeIn },
       '-=0.2',
     );
-
-    console.log(this.postItemRefs);
   }
 
   shouldComponentUpdate(nextProps) {
@@ -48,7 +46,17 @@ export default class PostList extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log(this.postItemRefs);
+    const { postItemRefs } = this;
+    for (let i = 0; i < postItemRefs.length; i++) {
+      const earlyStart = i > 0 ? '0.2' : '0';
+      TweenLite.fromTo(
+        postItemRefs[i],
+        0.6,
+        { opacity: 0, ease: Power2.easeIn },
+        { opacity: 1, ease: Power2.easeIn },
+        earlyStart,
+      );
+    }
   }
   render() {
     const { posts, page, skip } = this.props;
