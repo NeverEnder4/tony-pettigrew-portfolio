@@ -73,6 +73,23 @@ nextApp.prepare().then(() => {
       });
   });
 
+  app.get('/portfolio/all', (req, res) => {
+    fetch({
+      query: `{
+        objectsByType(bucket_slug: "tony-pettigrew-portfolio", type_slug: "portfolio-items") {
+             _id
+             title
+             slug
+             created_at
+             content
+             metadata
+           }
+     }`,
+    })
+      .then(items => res.json(items))
+      .catch(err => console.warn(err));
+  });
+
   app.get('*', (req, res) => {
     return handle(req, res);
   });

@@ -48,7 +48,12 @@ export default class Blog extends React.Component {
         } else {
           linksArr.push(
             <Link key={i} href={`/blog?page=${i}`}>
-              <a className="color-yellow page-link">{i}</a>
+              <a
+                onClick={this.paginationClickHandler}
+                className="color-yellow page-link"
+              >
+                {i}
+              </a>
             </Link>,
           );
         }

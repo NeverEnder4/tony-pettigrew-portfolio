@@ -1,6 +1,7 @@
 import SVGLogo from '../SVGLogo/SVGLogo';
 import { drawSVG } from '../SVGLogo/animations';
 import { CSSTransition } from 'react-transition-group';
+import PropTypes from 'prop-types';
 
 import './css-transition.css';
 
@@ -48,3 +49,7 @@ export default class Loading extends React.Component {
     );
   }
 }
+
+Loading.propTypes = {
+  transition: PropTypes.bool,
+};

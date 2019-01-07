@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Head from 'next/head';
 import css from 'styled-jsx/css';
+import PropTypes from 'prop-types';
 
 import Loading from '../components/Loading/Loading';
 import SVGLogo from './SVGLogo/SVGLogo';
@@ -27,19 +28,24 @@ class Layout extends React.Component {
   }
   componentDidMount() {
     const { loadIn } = this.props;
+    // if loadIn prop exists and is true, run handlePageLoad function
     if (loadIn) this.handlePageLoad();
+    // else, set the loading state to false and forego the loading page
     else this.setState({ loading: false });
   }
 
   handlePageLoad() {
+    // set transition state to true
     this.setState({
       transition: true,
     });
+    // after 3 seconds, set loading state to false
     setTimeout(() => {
       this.setState({
         loading: false,
       });
     }, 3000);
+    // after 2.8 seconds, set transition state to false
     setTimeout(() => {
       this.setState({
         transition: false,
@@ -49,9 +55,11 @@ class Layout extends React.Component {
   render() {
     const { title, children } = this.props;
     const { loading, transition } = this.state;
+    // if loading is true, return the loading component and pass it transition props, else return null
     const loadingComponent = loading ? (
       <Loading transition={transition} />
     ) : null;
+    // if loading is true, set showHeader to hidden css variable else set showHeader to visible css variable
     const showHeader = loading ? hidden : visible;
     return (
       <div>
@@ -89,7 +97,7 @@ class Layout extends React.Component {
             </Link>
           </nav>
         </header>
-
+        {/* if loading is false, display children */}
         {loading || children}
         <style jsx>{showHeader}</style>
         <style jsx>
@@ -187,3 +195,7 @@ class Layout extends React.Component {
 }
 
 export default Layout;
+
+Layout.propTypes = {
+  title: PropTypes.string,
+};

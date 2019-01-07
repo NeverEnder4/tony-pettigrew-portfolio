@@ -5,8 +5,8 @@ import { TimelineLite, TweenLite } from 'gsap';
 import PostItem from './PostItem/PostItem';
 
 export default class PostList extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.postItemRefs = [];
     this.setPostRefs = element => {
       if (element !== null) this.postItemRefs.push(element.children[0]);
@@ -22,20 +22,24 @@ export default class PostList extends React.Component {
       { opacity: 0, ease: Power2.easeIn },
       { opacity: 1, ease: Power2.easeIn },
     );
-    this.introTLL.fromTo(
-      postItemRefs[1],
-      0.4,
-      { opacity: 0, ease: Power2.easeIn },
-      { opacity: 1, ease: Power2.easeIn },
-      '-=0.2',
-    );
-    this.introTLL.fromTo(
-      postItemRefs[2],
-      0.4,
-      { opacity: 0, ease: Power2.easeIn },
-      { opacity: 1, ease: Power2.easeIn },
-      '-=0.2',
-    );
+    if (postItemRefs.length > 1) {
+      this.introTLL.fromTo(
+        postItemRefs[1],
+        0.4,
+        { opacity: 0, ease: Power2.easeIn },
+        { opacity: 1, ease: Power2.easeIn },
+        '-=0.2',
+      );
+    }
+    if (postItemRefs.length > 2) {
+      this.introTLL.fromTo(
+        postItemRefs[2],
+        0.4,
+        { opacity: 0, ease: Power2.easeIn },
+        { opacity: 1, ease: Power2.easeIn },
+        '-=0.2',
+      );
+    }
   }
 
   shouldComponentUpdate(nextProps) {
@@ -58,6 +62,7 @@ export default class PostList extends React.Component {
       );
     }
   }
+
   render() {
     const { posts, page, skip } = this.props;
     // the maxIndex of the last post to display in the PostList is either page * skip or 3
