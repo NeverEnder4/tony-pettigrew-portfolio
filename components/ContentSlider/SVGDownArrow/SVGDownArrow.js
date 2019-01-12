@@ -1,19 +1,4 @@
-import { floatTimeline, appear } from './animations';
-import { TimelineMax } from 'gsap';
-
 export default class SVGDownArrow extends React.Component {
-  constructor() {
-    super();
-    this.svgRef = React.createRef();
-    this.tl = new TimelineMax({ repeat: -1, yoyo: true });
-  }
-  componentDidMount() {
-    const { svgRef, tl } = this;
-    appear(svgRef.current);
-    setTimeout(() => {
-      floatTimeline(svgRef.current, tl);
-    }, 2000);
-  }
   render() {
     return (
       <React.Fragment>
@@ -50,14 +35,9 @@ export default class SVGDownArrow extends React.Component {
         <style jsx>
           {`
             svg {
-              position: absolute;
-              bottom: 4rem;
-              left: 50%;
-              transform: translateX(-50%) translateY(100%);
               width: 10rem;
-              visibility: hidden;
-              opacity: 0;
-              z-index: 100;
+              position: relative;
+              left: -75%;
             }
           `}
         </style>

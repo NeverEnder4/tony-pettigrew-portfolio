@@ -10,13 +10,19 @@ const About = () => (
       width="100%"
       height="100%"
       params={configBL}
-      className="wrapper"
+      className="particle-stars"
     />
     <ContentSlider />
-
+    <style jsx>{``}</style>
     <style global jsx>{`
       body {
         overflow-y: hidden;
+      }
+      .particle-stars {
+        background-attachment: fixed;
+        height: 100vh;
+        position: relative;
+        z-index: -10;
       }
     `}</style>
   </Layout>

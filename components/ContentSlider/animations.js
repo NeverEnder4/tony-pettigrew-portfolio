@@ -7,6 +7,7 @@ export const contentEnter = (contentArr, index) => {
     0.6,
     {
       y: '25%',
+      z: 0,
       autoAlpha: 0,
       ease: Expo.easeOut,
     },
@@ -21,6 +22,7 @@ export const contentEnter = (contentArr, index) => {
 export const contentSlideOut = (contentArr, index) => {
   return TweenLite.to(contentArr[index], 0.4, {
     y: '-100%',
+    z: 0,
     autoAlpha: 0,
     ease: Expo.easeIn,
   });
@@ -33,6 +35,7 @@ export const contentSlideIn = (contentArr, index, object) => {
     0.8,
     {
       y: '100%',
+      z: 0,
       ease: Expo.easeIn,
       opacity: 0,
     },
@@ -47,4 +50,28 @@ export const contentSlideIn = (contentArr, index, object) => {
       },
     },
   );
+};
+
+export const appear = ref => {
+  TweenLite.to(ref, 0.4, { autoAlpha: 1, delay: 2, y: '0%', z: 0 });
+};
+
+const float = ref => {
+  return TweenLite.fromTo(
+    ref,
+    0.7,
+    {
+      y: '0%',
+      z: 0,
+    },
+    {
+      y: '-30%',
+      z: 0,
+      ease: Expo.easeOut,
+    },
+  );
+};
+
+export const floatTimeline = (ref, tl) => {
+  tl.add(float(ref));
 };

@@ -8,24 +8,20 @@ export default class Demonstration extends React.Component {
     this.props.timelinelite.to(
       this.demoItemRef,
       0.08,
-      { opacity: 1, x: '0%', ease: Expo.easeInOut },
+      { autoAlpha: 1, x: '0%', ease: Expo.easeInOut },
       '+=0.05',
     );
   }
-  getColorClass = () => {
-    const i = Math.floor(Math.random() * 3);
-    const colorClasses = ['color-red', 'color-yellow', 'color-blue'];
-    return colorClasses[i];
-  };
+
   render() {
-    const { demo } = this.props;
+    const { demo, titleColor } = this.props;
     return (
       <div
         ref={element => this.setDemoItemRef(element)}
         className="display-box"
       >
         <div className="cover" />
-        <h1 className={this.getColorClass()}>{demo.title}</h1>
+        <h1 className={titleColor}>{demo.title}</h1>
         <div className="description">
           <h2>{demo.title}</h2>
           <div
@@ -49,7 +45,7 @@ export default class Demonstration extends React.Component {
                 src="/static/new-window-icon.svg"
                 className="demo-nav__icon demo"
               />
-              <span className="link-text">Visit Site</span>
+              <span className="link-text">Visit Demo</span>
             </a>
           </div>
         </div>
@@ -63,6 +59,7 @@ export default class Demonstration extends React.Component {
             box-shadow: 0 4px 5px rgba(0, 0, 0, 0.3);
             transition: all 300ms ease-in;
             opacity: 0;
+            visibility: hidden;
             transform: translateX(100%);
           }
 
@@ -133,7 +130,7 @@ export default class Demonstration extends React.Component {
 
           .link-text {
             opacity: 0;
-            transform: translateX(-25%);
+            transform: rotateX(180deg);
             transition: all 300ms ease-in;
             transition-delay: 100ms;
           }
@@ -151,7 +148,7 @@ export default class Demonstration extends React.Component {
 
           .display-box:hover span {
             opacity: 1;
-            transform: translateX(0);
+            transform: rotateX(360deg);
           }
 
           .display-box:hover .cover,

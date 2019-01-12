@@ -77,19 +77,19 @@ class Layout extends React.Component {
             </Link>
 
             <Link prefetch href="/about">
-              <a className="color-yellow">
+              <a className="color-yellow nav-link">
                 <img src="/static/about.svg" alt="about me" />
                 About Me
               </a>
             </Link>
             <Link prefetch href="/demonstrations">
-              <a className="color-red">
+              <a className="color-red nav-link">
                 {' '}
                 <img src="/static/demo.svg" alt="portfolio" /> Demonstrations
               </a>
             </Link>
             <Link prefetch href="/blog">
-              <a className="color-blue">
+              <a className="color-blue nav-link">
                 {' '}
                 <img src="/static/blog.svg" alt="blog" />
                 Opinions
@@ -107,6 +107,7 @@ class Layout extends React.Component {
               display: flex;
               justify-content: center;
               z-index: 10;
+              height: 75px;
             }
 
             nav {
@@ -114,7 +115,13 @@ class Layout extends React.Component {
               justify-content: space-between;
               padding: 0.5em 0;
               width: 86vw;
+              display: none;
             }
+
+            .nav-link {
+              visibility: hidden;
+            }
+
             nav a {
               text-decoration: none;
               font-size: 1.2rem;
@@ -153,6 +160,11 @@ class Layout extends React.Component {
 
             p.color-grey {
               margin: 0;
+            }
+            @media (min-width: 1200px) {
+              .nav-link {
+                visibility: visible;
+              }
             }
           `}
         </style>

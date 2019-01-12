@@ -1,7 +1,14 @@
 import Link from 'next/link';
+import { TimelineMax } from 'gsap';
 
 import SVGDownArrow from './SVGDownArrow/SVGDownArrow';
-import { contentEnter, contentSlideOut, contentSlideIn } from './animations';
+import {
+  contentEnter,
+  contentSlideOut,
+  contentSlideIn,
+  floatTimeline,
+  appear,
+} from './animations';
 
 export default class ContentSlider extends React.Component {
   constructor() {
@@ -10,6 +17,8 @@ export default class ContentSlider extends React.Component {
       clickCount: 0,
       disabled: false,
     };
+    this.buttonRef;
+    this.tl = new TimelineMax({ repeat: -1, yoyo: true });
     //reference array that holds the three blocks of content to be displayed in the slider
     this.contentRefArr = [];
     this.setContentRef = element => {
@@ -19,9 +28,13 @@ export default class ContentSlider extends React.Component {
   }
   // when component mounts, slide in content
   componentDidMount() {
-    const { contentRefArr } = this;
+    const { contentRefArr, buttonRef, tl } = this;
     const { clickCount } = this.state;
     contentEnter(contentRefArr, clickCount);
+    appear(buttonRef);
+    setTimeout(() => {
+      floatTimeline(buttonRef, tl);
+    }, 2000);
   }
 
   onClickHandler() {
@@ -91,7 +104,11 @@ export default class ContentSlider extends React.Component {
           </p>
         </div>
 
-        <button disabled={this.state.disabled} onClick={this.onClickHandler}>
+        <button
+          ref={element => (this.buttonRef = element)}
+          disabled={this.state.disabled}
+          onClick={this.onClickHandler}
+        >
           <SVGDownArrow id="logo" />
         </button>
 
@@ -108,6 +125,7 @@ export default class ContentSlider extends React.Component {
             opacity: 0;
             visibility: hidden;
             height: 100vh;
+            z-index: 0;
           }
           p {
             color: #eee;
@@ -126,6 +144,20 @@ export default class ContentSlider extends React.Component {
           a:hover,
           a:focus {
             color: #565656;
+          }
+          button {
+            background: transparent;
+            position: absolute;
+            bottom: 4rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(100%);
+            width: 4.3rem;
+            border-radius: 50%;
+            border: none;
+            padding: 0;
+            visibility: hidden;
+            opacity: 0;
+            z-index: 0;
           }
 
           button:hover {

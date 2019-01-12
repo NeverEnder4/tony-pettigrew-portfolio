@@ -85,18 +85,29 @@ export default class Blog extends React.Component {
           <style jsx>
             {`
               .container {
-                background-image: linear-gradient(
-                  89.2deg,
-                  rgba(99, 75, 136, 1) 5.8%,
-                  rgba(229, 131, 59, 1) 118.4%
-                );
-                height: 100vh;
+                height: 100%;
+                padding-top: 2em;
+                padding-bottom: 2em;
               }
               .button-container {
+                display: flex;
+                justify-content: center;
                 font-size: 1rem;
                 font-weight: 800;
-                margin: 0 auto;
-                width: 800px;
+                width: 100%;
+              }
+              @media (min-width: 700px) {
+                .container {
+                  padding-top: 3em;
+                  padding-bottom: 0;
+                }
+              }
+              @media (min-width: 830px) {
+                .button-container {
+                  margin: 0 auto;
+                  width: 800px;
+                  display: block;
+                }
               }
             `}
           </style>
@@ -116,6 +127,16 @@ export default class Blog extends React.Component {
 
             .page-link--divider {
               margin: 0 0.5em;
+            }
+            body {
+              overflow: auto;
+              background-image: linear-gradient(
+                89.2deg,
+                rgba(99, 75, 136, 1) 5.8%,
+                rgba(229, 131, 59, 1) 118.4%
+              );
+            }
+        
             }
           `}</style>
         </Layout>

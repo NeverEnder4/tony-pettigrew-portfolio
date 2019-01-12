@@ -23,6 +23,11 @@ export default class demonstrations extends React.Component {
     }
     return { demonstrations };
   }
+  getColorClass = i => {
+    if (i > 2) i %= 2;
+    const colorClasses = ['color-yellow', 'color-red', 'color-blue'];
+    return colorClasses[i];
+  };
 
   render() {
     const demonstrations = this.props.demonstrations.objectsByType;
@@ -32,8 +37,9 @@ export default class demonstrations extends React.Component {
         <Layout title="TonyPettigrew.com | Demonstrations">
           <div className="container">
             <div className="demonstrations-grid">
-              {demonstrations.map(demo => (
+              {demonstrations.map((demo, index) => (
                 <Demonstration
+                  titleColor={this.getColorClass(index)}
                   timelinelite={this.tll}
                   key={demo._id}
                   demo={demo}
@@ -54,7 +60,7 @@ export default class demonstrations extends React.Component {
               display: grid;
               height: 60vh;
               grid-template-columns: repeat(3, 1fr);
-              grid-template-columns: repeat(3, 1fr);
+              grid-template-rows: repeat(2, 30vh);
 
               grid-gap: 20px;
               padding: 10em;

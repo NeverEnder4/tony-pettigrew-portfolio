@@ -91,10 +91,6 @@ export default class PostList extends React.Component {
             );
         })}
         <style jsx>{`
-          .post-list {
-            padding-top: 3em;
-          }
-
           .title-position {
             display: flex;
             align-items: center;
@@ -104,7 +100,21 @@ export default class PostList extends React.Component {
           .blog-title {
             display: flex;
             align-items: center;
-            width: 800px;
+            flex-direction: column;
+            width: 100%;
+            text-align: center;
+          }
+
+           {
+            /* media query @830 pixels */
+          }
+          @media (min-width: 830px) {
+            .blog-title {
+              flex-direction: row;
+              align-items: flex-start;
+              width: 800px;
+              text-align: left;
+            }
           }
 
           .blog-title img {
