@@ -1,25 +1,23 @@
+import { demoScaleIn } from './animations';
+
 export default class Demonstration extends React.Component {
   constructor() {
     super();
     this.demoItemRef;
-    this.setDemoItemRef = element => (this.demoItemRef = element);
+    this.setDemoItemRef = element => {
+      this.demoItemRef = element;
+    };
   }
   componentDidMount() {
-    this.props.timelinelite.to(
-      this.demoItemRef,
-      0.08,
-      { autoAlpha: 1, x: '0%', ease: Expo.easeInOut },
-      '+=0.05',
-    );
+    const { timelinelite } = this.props;
+    const { demoItemRef } = this;
+    demoScaleIn(timelinelite, demoItemRef);
   }
 
   render() {
     const { demo, titleColor } = this.props;
     return (
-      <div
-        ref={element => this.setDemoItemRef(element)}
-        className="display-box"
-      >
+      <div ref={this.setDemoItemRef} className="display-box">
         <div className="cover" />
         <h1 className={titleColor}>{demo.title}</h1>
         <div className="description">
@@ -58,9 +56,8 @@ export default class Demonstration extends React.Component {
             position: relative;
             box-shadow: 0 4px 5px rgba(0, 0, 0, 0.3);
             transition: all 300ms ease-in;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateX(100%);
+            transform: scale(0.001);
+            transform-origin: center center;
           }
 
           .cover {
@@ -92,6 +89,9 @@ export default class Demonstration extends React.Component {
 
           .description {
             position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
             padding: 1em 2em;
             z-index: 15;
             transform: translateX(10%);
@@ -146,7 +146,7 @@ export default class Demonstration extends React.Component {
             background-position: center center;
           }
 
-          .display-box:hover span {
+          .display-box:hover .link-text {
             opacity: 1;
             transform: rotateX(360deg);
           }

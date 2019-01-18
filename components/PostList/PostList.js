@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import PropTypes from 'prop-types';
-import { TimelineLite, TweenLite } from 'gsap';
+import { TimelineLite, TweenLite, Power2 } from 'gsap';
 
 import PostItem from './PostItem/PostItem';
 

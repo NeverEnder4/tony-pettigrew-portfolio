@@ -4,10 +4,13 @@
   "description": "This is a portfolio website for my web development career",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "test": "jest --watch --verbose --setupTestFrameworkScriptFile=./tests/setup.js",
+    "coverage": "jest --coverage --setupTestFrameworkScriptFile=./tests/setup.js"
   },
   "author": "Tony Pettigrew",
   "license": "ISC",
+  "jest": {},
   "dependencies": {
     "@emotion/core": "^10.0.4",
     "@zeit/next-css": "^1.0.1",
@@ -26,5 +29,10 @@
     "react-transition-group": "^2.5.0",
     "vivus": "^0.4.4"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "enzyme": "^3.8.0",
+    "enzyme-adapter-react-15": "^1.2.0",
+    "enzyme-adapter-react-16": "^1.7.1",
+    "jest": "^23.6.0"
+  }
 }

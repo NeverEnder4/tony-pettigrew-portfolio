@@ -78,11 +78,11 @@ export default class ContentSlider extends React.Component {
         >
           <p>
             I spend most of my time learning{' '}
-            <Link prefetch href="/demonstrations">
+            <Link href="/demonstrations">
               <a className="color-red">JavaScript web technologies</a>
             </Link>
             , designing UIs and sharing what I've learned through my{' '}
-            <Link prefetch href="/blog">
+            <Link href="/blog">
               <a className="color-blue">blog</a>
             </Link>
             .
@@ -108,6 +108,7 @@ export default class ContentSlider extends React.Component {
           ref={element => (this.buttonRef = element)}
           disabled={this.state.disabled}
           onClick={this.onClickHandler}
+          className="down-arrow-button"
         >
           <SVGDownArrow id="logo" />
         </button>
@@ -162,6 +163,10 @@ export default class ContentSlider extends React.Component {
 
           button:hover {
             cursor: pointer;
+          }
+          button:active,
+          button:focus {
+            outline: none;
           }
         `}</style>
       </div>

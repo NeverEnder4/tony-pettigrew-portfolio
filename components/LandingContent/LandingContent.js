@@ -4,7 +4,7 @@ const LandingContent = () => (
   <React.Fragment>
     <div className="headline">
       <h1 className="title">Tony Pettigrew</h1> <h1 className="separator">|</h1>
-      <p>
+      <div className="glow-text-container">
         <span className="glow">w</span>
         <span className="glow-offset">e</span>
         <span className="glow">b</span> <span className="glow-offset">d</span>
@@ -16,32 +16,34 @@ const LandingContent = () => (
         <span className="glow-offset">p</span>
         <span className="glow">e</span>
         <span className="glow-offset-2">r</span>
-      </p>
+      </div>
     </div>
     <Contact />
     <style jsx>
       {`
-        h1 {
+        .title,
+        .separator {
           margin: 0;
           font-size: 7rem;
           color: #343434;
           text-shadow: 0.5px 1px rgba(0, 0, 0, 0.5);
         }
-        h1.title {
+        .title {
           font-family: 'Righteous', sans-serif;
           margin-left: 0.5em;
         }
-        h1.separator {
+        .separator {
           margin: 0 0.2em;
         }
-        p {
+        .glow-text-container {
           font-size: 3rem;
           color: #131313;
           font-weight: 800;
           opacity: 0.8;
+          margin: 0;
         }
 
-        p .glow {
+        .glow-text-container .glow {
           animation-name: glow;
           animation-duration: 3s;
           animation-iteration-count: infinite;
@@ -49,7 +51,7 @@ const LandingContent = () => (
           animation-timing-function: cubic-bezier(0.28, -0.35, 0.68, 1.49);
         }
 
-        p .glow-offset {
+        .glow-text-container .glow-offset {
           animation-name: glow-offset;
           animation-duration: 2.5s;
           animation-iteration-count: infinite;
@@ -57,7 +59,7 @@ const LandingContent = () => (
           animation-timing-function: cubic-bezier(0.28, -0.35, 0.68, 1.49);
         }
 
-        p .glow-offset-2 {
+        .glow-text-container .glow-offset-2 {
           animation-name: glow-offset-2;
           animation-duration: 2s;
           animation-iteration-count: infinite;

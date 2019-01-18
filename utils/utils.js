@@ -1,12 +1,9 @@
 export const formatDate = dateString => {
-  return dateString
-    .split(' ')
-    .filter((element, index) => {
-      if (index < 4) return true;
-    })
-    .join(' ');
+  const dateArr = dateString.split(' ');
+  dateArr.length = 4;
+  return dateArr.join(' ');
 };
 
 export const urlify = str => {
-  return str.replace(/\s/g, '%20');
+  return str.trim().replace(/\s/g, '%20');
 };

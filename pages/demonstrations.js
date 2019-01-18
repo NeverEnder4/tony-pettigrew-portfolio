@@ -61,7 +61,6 @@ export default class demonstrations extends React.Component {
               height: 60vh;
               grid-template-columns: repeat(3, 1fr);
               grid-template-rows: repeat(2, 30vh);
-
               grid-gap: 20px;
               padding: 10em;
             }

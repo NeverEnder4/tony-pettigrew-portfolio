@@ -13,7 +13,6 @@ const About = () => (
       className="particle-stars"
     />
     <ContentSlider />
-    <style jsx>{``}</style>
     <style global jsx>{`
       body {
         overflow-y: hidden;

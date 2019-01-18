@@ -70,9 +70,9 @@ class Layout extends React.Component {
         <header className="visibility">
           <nav>
             <Link prefetch href="/">
-              <a>
+              <a className="nav-logo">
                 <SVGLogo />
-                <p className="color-grey"> tonypettigrew.com</p>
+                <span className="color-grey"> tonypettigrew.com</span>
               </a>
             </Link>
 
@@ -106,8 +106,9 @@ class Layout extends React.Component {
               background: #131313;
               display: flex;
               justify-content: center;
-              z-index: 10;
-              height: 75px;
+               {
+                /* height: 75px; */
+              }
             }
 
             nav {
@@ -115,7 +116,9 @@ class Layout extends React.Component {
               justify-content: space-between;
               padding: 0.5em 0;
               width: 86vw;
-              display: none;
+               {
+                /* display: none; */
+              }
             }
 
             .nav-link {
@@ -158,9 +161,6 @@ class Layout extends React.Component {
               margin-right: 0.2em;
             }
 
-            p.color-grey {
-              margin: 0;
-            }
             @media (min-width: 1200px) {
               .nav-link {
                 visibility: visible;

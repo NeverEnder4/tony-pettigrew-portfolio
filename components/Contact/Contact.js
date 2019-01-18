@@ -31,28 +31,28 @@ export default class Contact extends React.Component {
             <img
               ref={this.seticonsRef}
               src="/static/github-icon.svg"
-              alt="github"
+              alt="github link"
             />
           </a>
           <a href="#">
             <img
               ref={this.seticonsRef}
               src="/static/linkedin-icon.svg"
-              alt="linkedin"
+              alt="linkedin link"
             />
           </a>
           <a href="#">
             <img
               ref={this.seticonsRef}
               src="/static/twitter-icon.svg"
-              alt="twitter"
+              alt="twitter link"
             />
           </a>
           <a href="#">
             <img
               ref={this.seticonsRef}
               src="/static/facebook-icon.svg"
-              alt="facebook"
+              alt="facebook link"
             />
           </a>
           <a
@@ -107,11 +107,7 @@ export default class Contact extends React.Component {
             .contact a:focus {
               opacity: 0.5;
             }
-            p {
-              font-size: 3rem;
-              color: #131313;
-              font-weight: 800;
-              opacity: 0.8;
+             {
             }
           `}
         </style>
