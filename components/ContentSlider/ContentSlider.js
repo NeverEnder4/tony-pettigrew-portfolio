@@ -28,13 +28,20 @@ export default class ContentSlider extends React.Component {
   }
   // when component mounts, slide in content
   componentDidMount() {
-    const { contentRefArr, buttonRef, tl } = this;
+    this.introAnimationSequence();
+  }
+
+  introAnimationSequence() {
+    const { contentRefArr, buttonRef } = this;
     const { clickCount } = this.state;
     contentEnter(contentRefArr, clickCount);
     appear(buttonRef);
+  }
+
+  enableButton(object) {
     setTimeout(() => {
-      floatTimeline(buttonRef, tl);
-    }, 2000);
+      object.setState({ disabled: false });
+    }, 800);
   }
 
   onClickHandler() {
@@ -50,15 +57,14 @@ export default class ContentSlider extends React.Component {
     if (this.state.clickCount === refArrLength - 1)
       this.setState({ clickCount: 0 });
     // else, increment count by 1
-    else {
-      this.setState({ clickCount: currIndex + 1 });
-    }
+    else this.setState({ clickCount: currIndex + 1 });
+
     // nextIndex is equal to currentIndex + 1
     nextIndex = currIndex + 1;
     // if nextIndex is equal to ref array length then set nextIndex to 0
     if (nextIndex === refArrLength) nextIndex = 0;
     // fade in and push up next content, then disable the button until animation ends
-    contentSlideIn(contentRefArr, nextIndex, this);
+    contentSlideIn(contentRefArr, nextIndex, this, this.enableButton);
   }
   render() {
     return (
@@ -85,7 +91,6 @@ export default class ContentSlider extends React.Component {
             <Link href="/blog">
               <a className="color-blue">blog</a>
             </Link>
-            .
           </p>
         </div>
         <div

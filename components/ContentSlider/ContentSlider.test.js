@@ -17,20 +17,45 @@ describe('ContentSlider initial state', () => {
 });
 
 describe('down arrow button', () => {
-  const wrapper = mount(<ContentSlider />);
-  const button = wrapper.find('.down-arrow-button');
+  describe('on initial render', () => {
+    const wrapper = mount(<ContentSlider />);
+    const button = wrapper.find('.down-arrow-button');
 
-  it('Content slider renders down arrow button', () => {
-    expect(wrapper.exists('.down-arrow-button')).toEqual(true);
+    it('Content slider renders down arrow button', () => {
+      expect(wrapper.exists('.down-arrow-button')).toEqual(true);
+    });
+
+    it('changes clickCount state to 1 after it is clicked', () => {
+      button.simulate('click');
+      expect(wrapper.state().clickCount).toEqual(1);
+    });
+
+    it('sets disabled state to true when button is clicked', () => {
+      button.simulate('click');
+      expect(wrapper.state().disabled).toEqual(true);
+    });
+
+    it('sets disabled state back to false after delay', () => {
+      jest.useFakeTimers();
+
+      const instance = wrapper.instance();
+
+      instance.onClickHandler();
+      instance.enableButton(wrapper);
+
+      jest.runAllTimers();
+      expect(wrapper.state().disabled).toEqual(false);
+    });
   });
 
-  it('changes clickCount state to 1 after it is clicked', () => {
-    button.simulate('click');
-    expect(wrapper.state().clickCount).toEqual(1);
-  });
+  describe('after two clicks', () => {
+    const wrapper = mount(<ContentSlider />);
+    const button = wrapper.find('.down-arrow-button');
 
-  it('sets disabled state to true when button is clicked', () => {
-    button.simulate('click');
-    expect(wrapper.state().disabled).toEqual(true);
+    it('sets clickCount state to 0 when at the end of the contentRefArr', () => {
+      wrapper.setState({ clickCount: 2 });
+      button.simulate('click');
+      expect(wrapper.state().clickCount).toEqual(0);
+    });
   });
 });

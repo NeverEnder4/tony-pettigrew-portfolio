@@ -10,7 +10,6 @@
   },
   "author": "Tony Pettigrew",
   "license": "ISC",
-  "jest": {},
   "dependencies": {
     "@emotion/core": "^10.0.4",
     "@zeit/next-css": "^1.0.1",
