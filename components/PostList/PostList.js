@@ -2,6 +2,7 @@ import Link from 'next/link';
 import PropTypes from 'prop-types';
 import { TimelineLite, TweenLite, Power2 } from 'gsap';
 
+import { fadeInitialPostsIn } from './animations';
 import PostItem from './PostItem/PostItem';
 
 export default class PostList extends React.Component {
@@ -13,40 +14,16 @@ export default class PostList extends React.Component {
     };
     this.introTLL = new TimelineLite({});
   }
-
   componentDidMount() {
-    const { postItemRefs } = this;
-    this.introTLL.fromTo(
-      postItemRefs[0],
-      0.4,
-      { opacity: 0, ease: Power2.easeIn },
-      { opacity: 1, ease: Power2.easeIn },
-    );
-    if (postItemRefs.length > 1) {
-      this.introTLL.fromTo(
-        postItemRefs[1],
-        0.4,
-        { opacity: 0, ease: Power2.easeIn },
-        { opacity: 1, ease: Power2.easeIn },
-        '-=0.2',
-      );
-    }
-    if (postItemRefs.length > 2) {
-      this.introTLL.fromTo(
-        postItemRefs[2],
-        0.4,
-        { opacity: 0, ease: Power2.easeIn },
-        { opacity: 1, ease: Power2.easeIn },
-        '-=0.2',
-      );
-    }
+    const { postItemRefs, introTLL } = this;
+    fadeInitialPostsIn(postItemRefs, introTLL);
   }
 
   shouldComponentUpdate(nextProps) {
     if (nextProps.page !== this.props.page) {
       this.postItemRefs = [];
       return true;
-    } else false;
+    } else return false;
   }
 
   componentDidUpdate() {
@@ -63,10 +40,14 @@ export default class PostList extends React.Component {
     }
   }
 
+  getMaxIndex(page, skip) {
+    return page * skip ? page * skip : 3;
+  }
+
   render() {
     const { posts, page, skip } = this.props;
     // the maxIndex of the last post to display in the PostList is either page * skip or 3
-    const maxIndex = page * skip ? page * skip : 3;
+    const maxIndex = this.getMaxIndex(page, skip);
     return (
       <div className="post-list">
         <div className="title-position">
