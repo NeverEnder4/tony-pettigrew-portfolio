@@ -72,29 +72,30 @@ class Layout extends React.Component {
             <Link prefetch href="/">
               <a className="nav-logo">
                 <SVGLogo />
-                <span className="color-grey"> tonypettigrew.com</span>
+                {/* <span className="color-grey"> tonypettigrew.com</span> */}
               </a>
             </Link>
-
-            <Link prefetch href="/about">
-              <a className="color-yellow nav-link">
-                <img src="/static/about.svg" alt="about me" />
-                About Me
-              </a>
-            </Link>
-            <Link prefetch href="/demonstrations">
-              <a className="color-red nav-link">
-                {' '}
-                <img src="/static/demo.svg" alt="portfolio" /> Demonstrations
-              </a>
-            </Link>
-            <Link prefetch href="/blog">
-              <a className="color-blue nav-link">
-                {' '}
-                <img src="/static/blog.svg" alt="blog" />
-                Opinions
-              </a>
-            </Link>
+            <div className="nav-link-container">
+              <Link prefetch href="/about">
+                <a className="color-yellow nav-link">
+                  <img src="/static/about.svg" alt="about me" />
+                  About Me
+                </a>
+              </Link>
+              <Link prefetch href="/demonstrations">
+                <a className="color-red nav-link">
+                  {' '}
+                  <img src="/static/demo.svg" alt="portfolio" /> Demonstrations
+                </a>
+              </Link>
+              <Link prefetch href="/blog">
+                <a className="color-blue nav-link">
+                  {' '}
+                  <img src="/static/blog.svg" alt="blog" />
+                  Opinions
+                </a>
+              </Link>
+            </div>
           </nav>
         </header>
         {/* if loading is false, display children */}
@@ -123,6 +124,12 @@ class Layout extends React.Component {
 
             .nav-link {
               visibility: hidden;
+            }
+
+            .nav-link-container {
+              display: flex;
+              width: 70%;
+              justify-content: space-between;
             }
 
             nav a {

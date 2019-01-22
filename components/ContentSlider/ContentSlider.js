@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { TimelineMax } from 'gsap';
+import { TimelineMax, TweenLite, Power4, Circ } from 'gsap';
 
 import SVGDownArrow from './SVGDownArrow/SVGDownArrow';
 import {
@@ -15,20 +15,32 @@ export default class ContentSlider extends React.Component {
     super();
     this.state = {
       clickCount: 0,
+      nameClickCount: 1,
       disabled: false,
     };
+    this.nameClickDisabled = false;
+    this.scrollContentDisabled = false;
     this.buttonRef;
     this.tl = new TimelineMax({ repeat: -1, yoyo: true });
+    this.phraseTL = new TimelineMax();
     //reference array that holds the three blocks of content to be displayed in the slider
     this.contentRefArr = [];
+    this.phraseRefArr = [];
     this.setContentRef = element => {
       if (this.contentRefArr.length < 3) this.contentRefArr.push(element);
     };
+    this.setPhraseRef = element => this.phraseRefArr.push(element);
     this.onClickHandler = this.onClickHandler.bind(this);
+    this.onNameClick = this.onNameClick.bind(this);
+    this.onWheelHandler = this.onWheelHandler.bind(this);
   }
   // when component mounts, slide in content
   componentDidMount() {
     this.introAnimationSequence();
+    TweenLite.set(this.phraseRefArr[0], {
+      opacity: 1,
+      y: '0%',
+    });
   }
 
   introAnimationSequence() {
@@ -41,7 +53,69 @@ export default class ContentSlider extends React.Component {
   enableButton(object) {
     setTimeout(() => {
       object.setState({ disabled: false });
+      object.scrollContentDisabled = false;
     }, 800);
+  }
+
+  onWheelHandler(e) {
+    if (this.scrollContentDisabled === true) return;
+    if (e.deltaY > 0) {
+      this.scrollContentDisabled = true;
+      this.onClickHandler();
+    }
+  }
+
+  onNameClick() {
+    if (this.nameClickDisabled === true) return;
+
+    this.nameClickDisabled = true;
+
+    const { nameClickCount } = this.state;
+    let currPhrase, prevPhrase;
+
+    if (nameClickCount === this.phraseRefArr.length - 1)
+      this.setState({ nameClickCount: 0 });
+    else this.setState({ nameClickCount: this.state.nameClickCount + 1 });
+
+    currPhrase = nameClickCount;
+    prevPhrase =
+      nameClickCount === 0 ? this.phraseRefArr.length - 1 : nameClickCount - 1;
+
+    this.phraseTL.add(
+      TweenLite.to(this.phraseRefArr[prevPhrase], 0.4, {
+        x: '20%',
+        y: '0%',
+        ease: Circ.easeOut,
+      }),
+    );
+
+    this.phraseTL.add(
+      TweenLite.to(this.phraseRefArr[prevPhrase], 0.2, {
+        opacity: 0,
+        ease: Circ.easeOut,
+      }),
+      '-=0.4',
+    );
+
+    this.phraseTL.add(
+      TweenLite.fromTo(
+        this.phraseRefArr[currPhrase],
+        0.4,
+        {
+          x: '0%',
+          y: '50%',
+        },
+        {
+          opacity: 1,
+          y: '0%',
+          x: '0%',
+          ease: Power4.easeOut,
+          onComplete: () => {
+            this.nameClickDisabled = false;
+          },
+        },
+      ),
+    );
   }
 
   onClickHandler() {
@@ -53,6 +127,7 @@ export default class ContentSlider extends React.Component {
     contentSlideOut(contentRefArr, currIndex);
     // disable down arrow button
     this.setState({ disabled: true });
+    this.scrollContentDisabled = true;
     // if count is 2 change count to 0
     if (this.state.clickCount === refArrLength - 1)
       this.setState({ clickCount: 0 });
@@ -68,14 +143,43 @@ export default class ContentSlider extends React.Component {
   }
   render() {
     return (
-      <div className="container">
+      <div onWheel={this.onWheelHandler} className="container">
         <div
           ref={element => this.setContentRef(element)}
           className="content-block intro"
         >
           <p>
-            Hi, my name is <span className="color-blue">Tony Pettigrew</span>.
-            I'm a developer based in Seattle.
+            Hi, my name is{' '}
+            <a
+              onKeyUp={e => {
+                if (e.keyCode === 13) e.target.click();
+              }}
+              tabIndex="0"
+              onClick={this.onNameClick}
+              className="color-blue my-name"
+            >
+              Tony Pettigrew
+            </a>
+            .
+            <span className="text-container">
+              I'm
+              <span ref={this.setPhraseRef} className="phrase">
+                {' '}
+                a developer based in Seattle.
+              </span>
+              <span ref={this.setPhraseRef} className="phrase">
+                {' '}
+                excited to learn every day.
+              </span>
+              <span ref={this.setPhraseRef} className="phrase">
+                {' '}
+                curious about all the things.
+              </span>
+              <span ref={this.setPhraseRef} className="phrase">
+                {' '}
+                interested in working for you.
+              </span>
+            </span>
           </p>
         </div>
         <div
@@ -91,6 +195,7 @@ export default class ContentSlider extends React.Component {
             <Link href="/blog">
               <a className="color-blue">blog</a>
             </Link>
+            .
           </p>
         </div>
         <div
@@ -124,7 +229,7 @@ export default class ContentSlider extends React.Component {
             justify-content: center;
             align-items: center;
             position: absolute;
-            top: 60px;
+            top: 40px;
             left: 50%;
             width: 79%;
             transform: translateX(-50%);
@@ -140,6 +245,26 @@ export default class ContentSlider extends React.Component {
             line-height: 6rem;
             letter-spacing: 0.35rem;
             transform: translateY(-60px);
+            text-shadow: 2px 2px rgba(0, 0, 0, 0.7);
+          }
+
+          .my-name {
+            cursor: pointer;
+            outline: none;
+          }
+
+          .text-container {
+            position: relative;
+            display: block;
+          }
+
+          .text-container .phrase {
+            white-space: nowrap;
+            position: absolute;
+            left: 9rem;
+            top: 0;
+            opacity: 0;
+            transform: translateY(50%);
           }
 
           a {
@@ -154,7 +279,7 @@ export default class ContentSlider extends React.Component {
           button {
             background: transparent;
             position: absolute;
-            bottom: 4rem;
+            bottom: 12rem;
             left: 50%;
             transform: translateX(-50%) translateY(100%);
             width: 4.3rem;

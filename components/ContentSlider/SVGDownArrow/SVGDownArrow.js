@@ -35,9 +35,7 @@ export default class SVGDownArrow extends React.Component {
         <style jsx>
           {`
             svg {
-              width: 10rem;
-              position: relative;
-              left: -75%;
+              width: 4.3rem;
             }
           `}
         </style>

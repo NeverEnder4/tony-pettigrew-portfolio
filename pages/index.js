@@ -9,6 +9,7 @@ const Index = () => (
     <style global jsx>{`
       body {
         overflow-y: hidden;
+        background-color: #131313;
       }
     `}</style>
   </Layout>
