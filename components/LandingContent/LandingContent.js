@@ -24,23 +24,25 @@ const LandingContent = () => (
         .title,
         .separator {
           margin: 0;
-          font-size: 7rem;
+          font-size: 4.5rem;
           color: #343434;
           text-shadow: 0.5px 1px rgba(0, 0, 0, 0.5);
         }
         .title {
-          font-family: 'Righteous', sans-serif;
-          margin-left: 0.5em;
+          font-family: 'Righteous', 'sans-serif';
+          margin-left: 0;
+          text-align: center;
         }
         .separator {
           margin: 0 0.2em;
+          display: none;
         }
         .glow-text-container {
-          font-size: 3rem;
+          font-size: 2rem;
           color: #131313;
           font-weight: 800;
           opacity: 0.8;
-          margin: 0;
+          margin-top: 2rem;
         }
 
         .glow-text-container .glow {
@@ -69,11 +71,13 @@ const LandingContent = () => (
 
         .headline {
           display: flex;
+          flex-direction: column;
+          justify-content: center;
           align-items: center;
           position: absolute;
           z-index: 10;
           transform: translateY(-50%);
-          top: 40%;
+          top: 35%;
           width: 100%;
         }
 
@@ -129,6 +133,49 @@ const LandingContent = () => (
           100% {
             opacity: 0.6;
             text-shadow: 0.5px 1px rgba(100, 100, 100, 0.2);
+          }
+        }
+
+        @media (min-width: 550px) {
+          .title,
+          .separator {
+            font-size: 7rem;
+          }
+
+          .glow-text-container {
+            font-size: 3rem;
+          }
+        }
+
+        @media (min-width: 810px) {
+          .title {
+            text-align: left;
+          }
+        }
+        @media (min-width: 1150px) {
+          .headline {
+            flex-direction: row;
+            justify-content: flex-start;
+          }
+
+          .title {
+            margin-left: 0.5em;
+          }
+
+          .separator {
+            display: inline;
+          }
+
+          .title,
+          .separator {
+            font-size: 5.8rem;
+          }
+        }
+
+        @media (min-width: 1330px) {
+          .title,
+          .separator {
+            font-size: 7rem;
           }
         }
       `}

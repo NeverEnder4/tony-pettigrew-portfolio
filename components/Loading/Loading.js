@@ -17,6 +17,7 @@ export default class Loading extends React.Component {
       <CSSTransition in={transition} timeout={300} classNames="loading">
         <div className="container loading">
           <SVGLogo
+            nameClass="load-logo"
             loadingIcon={isLoadingIcon}
             vivusAnimation={drawSVG}
             id={'logo'}

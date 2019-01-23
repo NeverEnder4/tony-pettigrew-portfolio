@@ -5,7 +5,49 @@ const loadingIconStyle = css`
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(2);
+    transform: translate(-50%, -50%) scale(1.5);
+    animation: rotate 0.8s ease-in-out 1s 1, rotate-back 0.8s ease-in-out 1.9s 1;
+  }
+  @keyframes rotate {
+    0% {
+      transform: translate(-50%, -50%) rotate(0deg) scale(1.5);
+    }
+
+    100% {
+      transform: translate(-50%, -50%) rotate(360deg) scale(1.5);
+    }
+  }
+  @keyframes rotate-back {
+    0% {
+      transform: translate(-50%, -50%) rotate(360deg) scale(1.5);
+    }
+
+    100% {
+      transform: translate(-50%, -50%) rotate(0deg) scale(1.5);
+    }
+  }
+  @media (min-width: 600px) {
+    svg {
+      transform: translate(-50%, -50%) scale(2);
+    }
+    @keyframes rotate {
+      0% {
+        transform: translate(-50%, -50%) rotate(0deg) scale(2);
+      }
+
+      100% {
+        transform: translate(-50%, -50%) rotate(360deg) scale(2);
+      }
+    }
+    @keyframes rotate-back {
+      0% {
+        transform: translate(-50%, -50%) rotate(360deg) scale(2);
+      }
+
+      100% {
+        transform: translate(-50%, -50%) rotate(0deg) scale(2);
+      }
+    }
   }
 `;
 
